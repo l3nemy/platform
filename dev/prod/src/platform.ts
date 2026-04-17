@@ -492,7 +492,10 @@ export async function configurePlatform() {
   setMetadata(presentation.metadata.MailUrl, config.MAIL_URL)
   setMetadata(presentation.metadata.SignupUrl, config.SIGNUP_URL ?? 'https://huly.io/signup')
 
-  const disabledFeatures = (config.DISABLED_FEATURES ??'').split(',').map(it => it.trim()).filter(it => it.length > 0)
+  const disabledFeatures = (config.DISABLED_FEATURES ?? '')
+    .split(',')
+    .map((it) => it.trim())
+    .filter((it) => it.length > 0)
   setMetadata(presentation.metadata.DisabledFeatures, new Set(disabledFeatures))
 
   setMetadata(recorder.metadata.StreamUrl, config.STREAM_URL)
@@ -545,7 +548,7 @@ export async function configurePlatform() {
 
   const languages = myBranding.languages
     ? myBranding.languages.split(',').map((l) => l.trim())
-    : ['en', 'ru', 'es', 'pt', 'pt-br', 'zh', 'fr', 'cs', 'it', 'de', 'ja', 'tr']
+    : ['en', 'ru', 'es', 'pt', 'pt-br', 'zh', 'fr', 'cs', 'it', 'de', 'ja', 'ko', 'tr']
 
   setMetadata(uiPlugin.metadata.Languages, languages)
 
@@ -573,7 +576,10 @@ export async function configurePlatform() {
     async () => await import(/* webpackChunkName: "workbench" */ '@hcengineering/workbench-resources')
   )
   addLocation(viewId, async () => await import(/* webpackChunkName: "view" */ '@hcengineering/view-resources'))
-  addLocation(converterId, async () => await import(/* webpackChunkName: "converter" */ '@hcengineering/converter-resources'))
+  addLocation(
+    converterId,
+    async () => await import(/* webpackChunkName: "converter" */ '@hcengineering/converter-resources')
+  )
   addLocation(taskId, async () => await import(/* webpackChunkName: "task" */ '@hcengineering/task-resources'))
   addLocation(contactId, async () => await import(/* webpackChunkName: "contact" */ '@hcengineering/contact-resources'))
   addLocation(chunterId, async () => await import(/* webpackChunkName: "chunter" */ '@hcengineering/chunter-resources'))
