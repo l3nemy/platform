@@ -34,6 +34,15 @@ const loaders = new Map<Plugin, Loader>()
 const translations = new Map<string, Map<Plugin, Messages | Status>>()
 const cache = new Map<string, Map<IntlString, IntlMessageFormat | Status>>()
 const englishTranslationsForMissing = new Map<Plugin, Messages | Status>()
+
+function _format<P extends Record<string, any>> (formatter: IntlMessageFormat, params: P, locale?: string): string {
+  const formatted: string = formatter.format(params)
+  if (locale === 'ko') {
+    return applyKoreanJosa(formatted)
+  }
+  return formatted
+}
+
 /**
  * @public
  * @param plugin -
@@ -198,7 +207,7 @@ export async function translate<P extends Record<string, any>> (
       if (compiled instanceof Status) {
         return message
       }
-      return compiled.format(params)
+      return _format(compiled, params, locale)
     }
     const id = _parseId(message)
     if (id.component === _EmbeddedId) {
@@ -211,7 +220,7 @@ export async function translate<P extends Record<string, any>> (
     }
     const compiledNew = new IntlMessageFormat(translation, locale, undefined, { ignoreTag: true })
     localCache.set(message, compiledNew)
-    return compiledNew.format(params)
+    return _format(compiledNew, params, locale)
   } catch (err) {
     return await handleIntlPipelineFailure(err, message, localCache, skipError)
   }
@@ -239,7 +248,7 @@ export function translateCB<P extends Record<string, any>> (
         resolve(message)
         return
       }
-      resolve(compiled.format(params))
+      resolve(_format(compiled, params, locale))
     } else {
       let id: _IdInfo
       try {
@@ -266,9 +275,43 @@ export function translateCB<P extends Record<string, any>> (
 
       const compiledNew = new IntlMessageFormat(translation, locale, undefined, { ignoreTag: true })
       localCache.set(message, compiledNew)
-      resolve(compiledNew.format(params))
+      resolve(_format(compiledNew, params, locale))
     }
   } catch (err) {
     void handleIntlPipelineFailure(err, message, localCache, skipError).then(resolve)
   }
+}
+
+export function applyKoreanJosa (text: string): string {
+  // Matching pattern: finalChar + (은|는), (이|가), (을|를), (과|와), (으로|로)
+  const regex = /(.)\((은\|는|이\|가|을\|를|과\|와|으로\|로)\)/g
+
+  return text.replace(regex, (match, lastChar, josaPair) => {
+    const charCode = lastChar.charCodeAt(0)
+    const [withBatchim, withoutBatchim] = josaPair.split('|')
+
+    let hasBatchim = false
+
+    // 가-힣
+    const isKorean = charCode >= 44032 && charCode <= 55203
+    // 0-9
+    const isNumber = charCode >= 48 && charCode <= 57
+
+    if (isKorean) {
+      // (charCode - '가') % 28
+      const batchimCode = (charCode - 44032) % 28
+      hasBatchim = batchimCode > 0
+
+      if (josaPair === '으로|로' && batchimCode === 8) {
+        return lastChar + withoutBatchim
+      }
+    } else if (isNumber) {
+      const num = parseInt(lastChar, 10)
+      hasBatchim = [0, 1, 3, 6, 7, 8].includes(num)
+    } else {
+      hasBatchim = false
+    }
+
+    return lastChar + (hasBatchim ? withBatchim : withoutBatchim)
+  })
 }
