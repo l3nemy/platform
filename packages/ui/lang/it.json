@@ -58,6 +58,7 @@
     "Czech": "Čeština",
     "German": "Deutsch",
     "Japanese": "日本語",
+    "Korean": "한국어",
     "Turkish": "Türkçe",
     "MinutesBefore": "{minutes, plural, =1 {un minuto prima} other {# minuti prima}}",
     "HoursBefore": "{hours, plural, =1 {un'ora prima} other {# ore prima}}",
