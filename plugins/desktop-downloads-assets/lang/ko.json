@@ -1,0 +1,10 @@
+{
+  "string": {
+    "Downloads": "다운로드",
+    "Completed": "완료",
+    "Cancelled": "취소",
+    "Interrupted": "중지됨",
+    "Paused": "일시중지됨",
+    "Progressing": "진행 중"
+  }
+}

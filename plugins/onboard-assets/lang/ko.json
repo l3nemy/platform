@@ -1,0 +1,19 @@
+{
+  "status": {
+    "RequiredField": "필수 입력 항목 {field}",
+    "FieldsDoNotMatch": "{field}(이|가) {field2}(과|와) 일치하지 않습니다",
+    "ConnectingToServer": "서버에 연결 중...."
+  },
+  "string": {
+    "CreateWorkspace": "워크스페이스 생성",
+    "LastName": "성",
+    "FirstName": "이름",
+    "Workspace": "워크스페이스 이름",
+    "FillInProfile": "프로필 입력",
+    "SetUpPassword": "비밀번호 설정",
+    "Next": "다음",
+    "Skip": "건너뛰기",
+    "SignUpCompleted": "가입이 완료되었습니다",
+    "StartUsingHuly": "Huly 시작하기"
+  }
+}

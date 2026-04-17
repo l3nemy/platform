@@ -283,10 +283,10 @@ export function translateCB<P extends Record<string, any>> (
 }
 
 export function applyKoreanJosa (text: string): string {
-  // Matching pattern: finalChar + (은|는), (이|가), (을|를), (과|와), (으로|로)
-  const regex = /(.)\((은\|는|이\|가|을\|를|과\|와|으로\|로)\)/g
+  // Matching pattern: finalChar (skipping trailing quote/backtick wrappers) + (은|는), (이|가), (을|를), (과|와), (으로|로)
+  const regex = /([^"'`])(["'`]*)\((은\|는|이\|가|을\|를|과\|와|으로\|로)\)/g
 
-  return text.replace(regex, (match, lastChar, josaPair) => {
+  return text.replace(regex, (match, lastChar, wrappers, josaPair) => {
     const charCode = lastChar.charCodeAt(0)
     const [withBatchim, withoutBatchim] = josaPair.split('|')
 
@@ -303,7 +303,7 @@ export function applyKoreanJosa (text: string): string {
       hasBatchim = batchimCode > 0
 
       if (josaPair === '으로|로' && batchimCode === 8) {
-        return lastChar + withoutBatchim
+        return lastChar + wrappers + withoutBatchim
       }
     } else if (isNumber) {
       const num = parseInt(lastChar, 10)
@@ -312,6 +312,6 @@ export function applyKoreanJosa (text: string): string {
       hasBatchim = false
     }
 
-    return lastChar + (hasBatchim ? withBatchim : withoutBatchim)
+    return lastChar + wrappers + (hasBatchim ? withBatchim : withoutBatchim)
   })
 }

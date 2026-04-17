@@ -1,0 +1,30 @@
+{
+  "status": {
+    "LoadingPlugin": "플러그인({plugin})을 읽어들이는 중...",
+    "UnknownError": "알 수 없는 오류: {message}",
+    "InvalidId": "알 수 없는 ID: {id}",
+    "BadRequest": "유효하지 않은 요청",
+    "Forbidden": "접근이 금지되어 있습니다",
+    "Conflict": "충돌",
+    "ExpiredLink": "초대 링크가 만료되었습니다",
+    "Unauthorized": "인증되지 않은 요청",
+    "UnknownMethod": "알 수 없는 매서드: {method}",
+    "InternalServerError": "서버 내부 오류",
+    "MaintenanceWarning": "점검이 예정되어 있습니다",
+    "MaintenanceWarningTime": "{time, plural, =1 {1분 이내에} other {#분 후에}}",
+    "AccountNotFound": "계정을 찾을 수 없거나, 비밀번호가 틀립니다",
+    "AccountNotConfirmed": "계정이 확인되어 있지 않습니다",
+    "WorkspaceNotFound": "워크스페이스를 찾을 수 없습니다",
+    "AccountAlreadyExists": "계정이 이미 존재합니다",
+    "WorkspaceRateLimit": "서버가 혼잡합니다. 잠시 후 다시 시도해주세요",
+    "AccountAlreadyConfirmed": "계정이 이미 인증되어 있습니다",
+    "WorkspaceAlreadyExists": "워크스페이스가 이미 존재합니다",
+    "InvalidOtp": "유효하지 않은 코드",
+    "PasswordLoginLocked": "로그인 실패 횟수가 초과하여 비밀번호 로그인이 제한되었습니다. OTP 로그인으로 다시 시도해주세요.",
+    "InviteNotFound": "이메일: {email}의 초대를 찾을 수 없습니다.",
+    "WorkspaceLimitReached": "생성 할 수 있는 워크스페이스의 상한에 도달했습니다",
+    "ReadOnlyAccount": "게스트 모드",
+    "SystemAccount": "시스템 계정",
+    "SocialIdAlreadyExists": "소셜 ID가 이미 존재합니다"
+  }
+}

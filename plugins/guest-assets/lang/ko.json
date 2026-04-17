@@ -1,0 +1,10 @@
+{
+  "string": {
+    "CreatePublicLink": "공개 링크 생성",
+    "PublicLink": "공개 링크",
+    "Revoke": "해제",
+    "RevokeConfirmation": "이 작업을 수행하면 이전에 공유된 링크는 더 이상 작동하지 않습니다. 정말 이 공개 링크를 해제하시겠습니까?",
+    "LinkWasRevoked": "공개 링크가 해제되었습니다",
+    "Copy": "복사"
+  }
+}

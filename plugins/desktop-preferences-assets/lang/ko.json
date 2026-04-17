@@ -1,0 +1,11 @@
+{
+  "string": {
+    "ShowNotifications": "알림 표시",
+    "PlaySound": "소리 재생",
+    "BounceAppIcon": "앱 아이콘 튕기기 (Mac 전용)",
+    "ShowBadge": "앱 아이콘에 배지 표시",
+    "SoundAndAppearance": "소리 및 외관",
+    "HaveGotANotification": "새 알림이 도착했습니다",
+    "TotalNotificationsCount": "총 {count, plural, =1 {#개 알림} other {#개 알림}}"
+  }
+}

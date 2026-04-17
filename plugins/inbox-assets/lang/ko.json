@@ -1,0 +1,13 @@
+{
+  "string": {
+    "Inbox": "수신함",
+    "ReactedToYourMessage": "메시지에 반응했습니다",
+    "ClearAll": "모두 지우기",
+    "InboxIsClear": "깔끔합니다",
+    "YouDontHaveAnyNewMessages": "아직 새 메시지가 없습니다",
+    "ReadAll": "모두 읽음 처리",
+    "Clearing": "지우는 중...",
+    "Reading": "읽음 처리 중...",
+    "HideUserNames": "유저 이름 가리기"
+  }
+}
